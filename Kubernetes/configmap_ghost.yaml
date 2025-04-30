@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ghost-cms-configmap
+  labels:
+    app: ghost-cms
+data:
+  NODE_ENV: production
+  url: https://bitofcloud.joakim.online    # URL of Ghost CMS App server
+  database__connection__host: mysql-statefulset-0.mysql-svc.default.svc.cluster.local
+  # <POD_NAME>.<HEADLESS_SERVICE_NAME>.<NAMESPACE>.svc.cluster.local
+  database__client: mysql
+  

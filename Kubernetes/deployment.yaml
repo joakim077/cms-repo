@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ghost-cms-pod
+  name: ghost-cms-pod
+  # namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost-cms-pod
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ghost-cms-pod
+    spec:
+      containers:
+      - image: ghost
+        name: ghost
+        env:
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: ghost-cms-configmap
+                key: NODE_ENV
+                
+          - name: database__client
+            valueFrom:
+              configMapKeyRef:
+                name: ghost-cms-configmap
+                key: database__client
+          - name: url
+            valueFrom:
+              configMapKeyRef: 
+                name: ghost-cms-configmap
+                key: url
+          - name: database__connection__host
+            valueFrom:
+              configMapKeyRef: 
+                name: ghost-cms-configmap
+                key: database__connection__host
+                
+          - name: database__connection__user
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: database__connection__user
+          - name: database__connection__password
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: database__connection__password
+          - name: database__connection__database
+            valueFrom:
+              secretKeyRef:
+                name: database-secret
+                key: database__connection__database
+          
+          - name: mail__transport
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__transport
+          - name:  mail__from
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__from
+          - name: mail__options__host
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__options__host
+          - name: mail__options__port
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__options__port
+          - name: mail__options__auth__user
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__options__auth__user
+          - name: mail__options__auth__pass
+            valueFrom:
+              secretKeyRef:
+                name: mail-secret
+                key: mail__options__auth__pass
+          - name: mail__options__secure
+            value: "false"
+        ports:
+          - containerPort: 2368
+            protocol: TCP
+        resources: {}
+        volumeMounts:
+          - name: config-vol
+            mountPath: /var/lib/ghost/content
+      
+      volumes:
+        - name: config-vol
+          persistentVolumeClaim:
+             claimName: ghost-cms-pvc
