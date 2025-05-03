@@ -89,10 +89,11 @@
 - Certificate
 
 ### 🧠 learnings and observations
-- How Changesettings are saved in new Pod/Container with Normal Docker Image
+- How to manage Volume for containers, so that when new pod is created it has all the previous settings (using Persistance Volume)
 - CDN 
 - DataBase InnoDB cluster (Reader:Writer)
 - Add-on EBS-CSI-Driver
+- Let's Encrypt free SSL for HTTPS.
 
 
 **See also** [My site on Beehiiv](https://vishals-newsletter-25f774.beehiiv.com/)
