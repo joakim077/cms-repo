@@ -90,8 +90,8 @@
 
 ### 🧠 learnings and observations
 - How to manage Volume for containers, so that when new pod is created it has all the previous settings (using Persistance Volume)
-- CDN 
-- DataBase InnoDB cluster (Reader:Writer)
+- [CDN](./opt/CDN.md)
+- [MYSQL operator for Kubernetes](./opt/MYSQL-cluster.md)
 - Add-on EBS-CSI-Driver
 - Let's Encrypt free SSL for HTTPS.
 
