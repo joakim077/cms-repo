@@ -256,6 +256,5 @@ The kubeseal utility uses asymmetric crypto to encrypt secrets that only the c
 - Type your URL in browser and access ghost, Login and configure.
     ![ghost_in_eks](../images/ghost_in_eks.png)
 
-🔙 [Back](README.md)
 
 🏡[Homepage](../README.md)
