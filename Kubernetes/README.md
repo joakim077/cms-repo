@@ -226,6 +226,18 @@ The kubeseal utility uses asymmetric crypto to encrypt secrets that only the c
     ```bash
     kubectl apply -f cluster_issuer.yaml
     ```
+- Apply the Certificate Resource
+  ```bash
+  kubectl apply -f certificate
+
+  # wait for it to be ready
+  kubectl get certificate
+
+  # NAME   READY   SECRET   AGE
+  # app    True    app      20s
+  
+  ```
+
 
 
 
